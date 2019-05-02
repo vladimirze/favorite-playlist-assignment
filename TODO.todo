@@ -1,0 +1,19 @@
+☐ Landing page where you can add, delete and sort your playlist.
+☐ Tracks will be displayed as cards with the following fields:
+    ☐ Album cover (if exists).
+    ☐ Track name.
+    ☐ Album name.
+    ☐ Artist name.
+☐ Maximum number of tracks is 19.
+☐ Track addition is available by track name or by track name & artist name.
+☐ Track addition will always add track at the beginning (ignores sort).
+☐ Adding track when the list is full will prompt a modal that the oldest song is going to be deleted, the user can confirm, abort, or pick another song to delete from a dropdown list.
+☐ Sorting options are by track, album or artist name, addition to the list order (default) and track length.
+☐ When the user refreshes the page the playlist he created will not change (same songs same order).
+☐ Clicking on a track card will move the user to the tracks page where the user can see further info about that track like length and lyrics in addition to the info on the card.
+☐ The track page will have a back button to return to the playlist page.
+☐ The app should be responsive.
+☐ README.md
+    ☐ Explain how to run the project
+    ☐ Add assumptions I've made
+☐ Deploy
