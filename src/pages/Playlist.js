@@ -1,5 +1,5 @@
 import React from 'react';
-import AddTrackOverlay from "../components/add-track-overlay/AddTrackOverlay";
+import AddTrackOverlay from "../components/addTrackOverlay/AddTrackOverlay";
 
 
 export default class Playlist extends React.Component {
@@ -12,14 +12,19 @@ export default class Playlist extends React.Component {
 
       this.showAddTrackOverlay = this.showAddTrackOverlay.bind(this);
       this.hideAddTrackOverlay = this.hideAddTrackOverlay.bind(this);
+      this.addTrack = this.addTrack.bind(this);
    }
 
    showAddTrackOverlay() {
       this.setState(() => ({isAddTrackOverlayShown: true}));
    }
 
-   hideAddTrackOverlay(track) {
+   hideAddTrackOverlay() {
       this.setState(() => ({isAddTrackOverlayShown: false}));
+   }
+
+   addTrack(track) {
+      console.log(track);
    }
 
    render() {
@@ -27,8 +32,11 @@ export default class Playlist extends React.Component {
          <div>
             <button onClick={this.showAddTrackOverlay}>Add track</button>
 
-            {this.state.isAddTrackOverlayShown &&
-            <AddTrackOverlay onClose={this.hideAddTrackOverlay}/>}
+            <AddTrackOverlay
+               onClose={this.hideAddTrackOverlay}
+               onAddTrack={this.addTrack}
+               isShown={this.state.isAddTrackOverlayShown}
+               key={this.state.isAddTrackOverlayShown}/>
          </div>
       );
    }

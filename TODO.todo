@@ -5,7 +5,7 @@
     ☐ Album name.
     ☐ Artist name.
 ☐ Maximum number of tracks is 19.
-☐ Track addition is available by track name or by track name & artist name.
+✔ Track addition is available by track name or by track name & artist name. @done (05/05/2019, 17:29:06)
 ☐ Track addition will always add track at the beginning (ignores sort).
 ☐ Adding track when the list is full will prompt a modal that the oldest song is going to be deleted, the user can confirm, abort, or pick another song to delete from a dropdown list.
 ☐ Sorting options are by track, album or artist name, addition to the list order (default) and track length.
