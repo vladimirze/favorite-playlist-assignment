@@ -1,6 +1,7 @@
 import React from 'react';
 import AddTrackOverlay from "../components/addTrackOverlay/AddTrackOverlay";
 import playlistStorage from "../services/playlistStorage";
+import Track from "../components/Track";
 
 
 export default class Playlist extends React.Component {
@@ -36,6 +37,12 @@ export default class Playlist extends React.Component {
       });
    }
 
+   renderTracks() {
+    return this.state.tracks.map(track => {
+       return <Track track={track} key={track.track_id}/>;
+    });
+ }
+
    render() {
       return (
          <div>
@@ -46,6 +53,8 @@ export default class Playlist extends React.Component {
                onAddTrack={this.addTrack}
                isShown={this.state.isAddTrackOverlayShown}
                key={this.state.isAddTrackOverlayShown}/>
+
+          {this.renderTracks()}
          </div>
       );
    }
