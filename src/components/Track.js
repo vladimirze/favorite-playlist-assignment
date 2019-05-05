@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 
 
 export default function Track(props) {
@@ -15,6 +15,8 @@ export default function Track(props) {
                <br/>
                {props.track.album_name}
             </Card.Text>
+
+            <Button variant="danger" onClick={() => props.onDelete(props.track)}>Delete</Button>
          </Card.Body>
       </Card>
    )
