@@ -1,5 +1,6 @@
 import React from 'react';
 import AddTrackOverlay from "../components/addTrackOverlay/AddTrackOverlay";
+import playlistStorage from "../services/playlistStorage";
 
 
 export default class Playlist extends React.Component {
@@ -7,7 +8,8 @@ export default class Playlist extends React.Component {
       super(props);
 
       this.state = {
-         isAddTrackOverlayShown: false
+         isAddTrackOverlayShown: false,
+         tracks: playlistStorage.load()
       };
 
       this.showAddTrackOverlay = this.showAddTrackOverlay.bind(this);
@@ -24,7 +26,14 @@ export default class Playlist extends React.Component {
    }
 
    addTrack(track) {
-      console.log(track);
+      this.setState((prevState) => {
+         const tracks = [track, ...prevState.tracks];
+         playlistStorage.save(tracks);
+
+         return {
+            tracks: tracks
+         };
+      });
    }
 
    render() {
