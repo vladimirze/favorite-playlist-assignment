@@ -1,9 +1,9 @@
 ☐ Landing page where you can add, delete and sort your playlist.
 ☐ Tracks will be displayed as cards with the following fields:
     ☐ Album cover (if exists).
-    ☐ Track name.
-    ☐ Album name.
-    ☐ Artist name.
+    ✔ Track name. @done (05/05/2019, 18:28:52)
+    ✔ Album name. @done (05/05/2019, 18:28:53)
+    ✔ Artist name. @done (05/05/2019, 18:28:54)
 ☐ Maximum number of tracks is 19.
 ✔ Track addition is available by track name or by track name & artist name. @done (05/05/2019, 17:29:06)
 ☐ Track addition will always add track at the beginning (ignores sort).
@@ -17,3 +17,5 @@
     ☐ Explain how to run the project
     ☐ Add assumptions I've made
 ☐ Deploy
+☐ Fix clicking on delete button takes user to the track page
+☐ Cards heigh are misaligned

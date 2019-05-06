@@ -4,7 +4,7 @@ import {Button, Card} from "react-bootstrap";
 
 export default function Track(props) {
    return (
-      <Card>
+      <Card onClick={props.onClick}>
          <Card.Img variant="top" src="https://via.placeholder.com/150"/>
 
          <Card.Body>

@@ -1,15 +1,18 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Playlist from './pages/Playlist'
+import PlaylistPage from './pages/PlaylistPage';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import TrackPage from "./pages/TrackPage";
 
 
 export default class App extends React.Component {
    render() {
       return (
-         <React.Fragment>
-            <Playlist/>
-         </React.Fragment>
+         <Router>
+            <Route path="/" exact component={PlaylistPage} />
+            <Route path="/track/:id" component={TrackPage} />
+         </Router>
       )
    };
 }

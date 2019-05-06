@@ -3,9 +3,10 @@ import AddTrackOverlay from "../components/addTrackOverlay/AddTrackOverlay";
 import playlistStorage from "../services/playlistStorage";
 import Track from "../components/Track";
 import {Col, Container, Row} from "react-bootstrap";
+import {withRouter} from "react-router-dom";
 
 
-export default class Playlist extends React.Component {
+class PlaylistPage extends React.Component {
    constructor(props) {
       super(props);
 
@@ -47,7 +48,10 @@ export default class Playlist extends React.Component {
             this.state.tracks.map(track => {
                return (
                   <Col xs={3} key={track.track_id}>
-                     <Track track={track} onDelete={this.deleteTrack}/>
+                     <Track
+                        track={track}
+                        onDelete={this.deleteTrack}
+                        onClick={() => this.props.history.push(`/track/${track.track_id}`)}/>
                   </Col>
                );
             })
@@ -83,3 +87,5 @@ export default class Playlist extends React.Component {
       );
    }
 }
+
+export default withRouter(PlaylistPage);
