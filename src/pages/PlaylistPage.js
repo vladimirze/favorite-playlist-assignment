@@ -2,7 +2,7 @@ import React from 'react';
 import AddTrackOverlay from "../components/addTrackOverlay/AddTrackOverlay";
 import playlistStorage from "../services/playlistStorage";
 import Track from "../components/Track";
-import {Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
 import Dropdown from "../components/Dropdown";
 import userPerferences from "../services/userPreferences";
@@ -99,7 +99,7 @@ class PlaylistPage extends React.Component {
    render() {
       return (
          <Container>
-            <button onClick={this.showAddTrackOverlay}>Add track</button>
+            <Button variant="primary" onClick={this.showAddTrackOverlay}>Add track</Button>
 
             Sort by:
             <Dropdown

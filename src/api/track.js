@@ -13,6 +13,10 @@ const trackResource = {
 
    getLyrics(trackId) {
       return request(`${CONFIG.BASE_ENDPOINT}/track.lyrics.get?track_id=${trackId}`);
+   },
+
+   getTrack(trackId) {
+      return request(`${CONFIG.BASE_ENDPOINT}/track.get?track_id=${trackId}`)
    }
 };
 

@@ -30,10 +30,10 @@ export default class AddTrackOverlay extends React.Component {
       trackResource.findTrack({q_track: this.state.trackName, q_artist: this.state.artistName})
          .then(tracks => {
             this.setState(() => {
-               const found = tracks.map(track => track.track);
+               const foundTracks = tracks.map(track => track.track);
                return {
-                  tracks: found,
-                  isNoTracksFound: found.length === 0
+                  tracks: foundTracks,
+                  isNoTracksFound: foundTracks.length === 0
                }
             });
          })
@@ -41,8 +41,12 @@ export default class AddTrackOverlay extends React.Component {
    }
 
    chooseTrack(track) {
-      this.props.onAddTrack(track);
-      this.props.onClose();
+      trackResource.getTrack(track.track_id)
+         .then(track => {
+            this.props.onAddTrack(track.track);
+            this.props.onClose();
+         })
+         .catch(console.error);
    }
 
    render() {
