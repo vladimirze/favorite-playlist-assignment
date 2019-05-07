@@ -4,7 +4,16 @@ import playlistStorage from "../services/playlistStorage";
 import Track from "../components/Track";
 import {Col, Container, Row} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
+import Dropdown from "../components/Dropdown";
+import userPerferences from "../services/userPreferences";
 
+
+const SORT_CHOICES = {
+   ORIGINAL: {label: 'Default', value: 'added_at'},
+   TRACK: {label: 'Track', value: 'track_name'},
+   ALBUM: {label: 'Album', value: 'album_name'},
+   ARTIST: {label: 'Artist', value: 'artist_name'}
+};
 
 class PlaylistPage extends React.Component {
    constructor(props) {
@@ -12,7 +21,8 @@ class PlaylistPage extends React.Component {
 
       this.state = {
          isAddTrackOverlayShown: false,
-         tracks: playlistStorage.load()
+         tracks: playlistStorage.load(),
+         sortOrder: userPerferences.load().sortOrder || SORT_CHOICES.ORIGINAL
       };
 
       this.showAddTrackOverlay = this.showAddTrackOverlay.bind(this);
@@ -20,6 +30,7 @@ class PlaylistPage extends React.Component {
       this.addTrack = this.addTrack.bind(this);
       this.renderTracks = this.renderTracks.bind(this);
       this.deleteTrack = this.deleteTrack.bind(this);
+      this.handleSort = this.handleSort.bind(this);
    }
 
    showAddTrackOverlay() {
@@ -32,6 +43,7 @@ class PlaylistPage extends React.Component {
 
    addTrack(track) {
       this.setState((prevState) => {
+         track.added_at = Date.now();
          const tracks = [track, ...prevState.tracks];
          playlistStorage.save(tracks);
 
@@ -71,10 +83,29 @@ class PlaylistPage extends React.Component {
       });
    }
 
+   handleSort(sortBy) {
+      this.setState((prevState) => {
+         const sortedPlaylist = playlistStorage.sortBy(prevState.tracks, sortBy.value);
+         playlistStorage.save(sortedPlaylist);
+         userPerferences.save({sortOrder: sortBy});
+
+         return {
+            tracks: sortedPlaylist,
+            sortOrder: sortBy
+         }
+      });
+   }
+
    render() {
       return (
          <Container>
             <button onClick={this.showAddTrackOverlay}>Add track</button>
+
+            Sort by:
+            <Dropdown
+               choices={SORT_CHOICES}
+               onSelect={this.handleSort}
+               initialChoice={this.state.sortOrder}/>
 
             <AddTrackOverlay
                onClose={this.hideAddTrackOverlay}
