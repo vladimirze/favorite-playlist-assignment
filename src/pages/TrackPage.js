@@ -25,11 +25,7 @@ class TrackPage extends React.Component {
       if (this.hasLyrics()) {
          trackResource.getLyrics(this.trackId)
             .then(response => {
-               this.setState(() => {
-                  return {
-                     lyrics: response
-                  }
-               });
+               this.setState(() => ({lyrics: response.lyrics}));
             })
             .catch(console.error);
       }
@@ -43,7 +39,12 @@ class TrackPage extends React.Component {
       if (!this.hasLyrics()) {
          return <div>No lyrics for this track</div>;
       } else {
-         return <div>{this.state.lyrics.lyrics_body}</div>;
+         return (
+            <div>
+               <hr/>
+               <pre>{this.state.lyrics.lyrics_body}</pre>
+            </div>
+         )
       }
    }
 
@@ -54,8 +55,6 @@ class TrackPage extends React.Component {
    render() {
       return (
          <Container>
-            <Button variant="info" onClick={this.gotoPlaylist}>Back</Button>
-
             {
                !this.track &&
                <Alert variant="warning">
@@ -75,6 +74,7 @@ class TrackPage extends React.Component {
 
             {this.renderLyrics()}
 
+            <Button variant="info" onClick={this.gotoPlaylist}>Back to Playlist</Button>
          </Container>
       )
    }

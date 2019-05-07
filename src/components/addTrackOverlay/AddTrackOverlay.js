@@ -3,6 +3,7 @@ import React from 'react';
 import trackResource from '../../api/track';
 import './add-track-overlay.less';
 import {Button, ListGroup, Modal, Form} from "react-bootstrap";
+import albumResource from "../../api/album";
 
 
 export default class AddTrackOverlay extends React.Component {
@@ -40,10 +41,15 @@ export default class AddTrackOverlay extends React.Component {
          .catch(console.error);
    }
 
-   chooseTrack(track) {
-      trackResource.getTrack(track.track_id)
-         .then(track => {
-            this.props.onAddTrack(track.track);
+   chooseTrack(selectedTrack) {
+      Promise.all([
+         trackResource.getTrack(selectedTrack.track_id),
+         albumResource.getAlbum(selectedTrack.album_id)
+      ])
+         .then(response => {
+            const [{track}, album] = response;
+            track.album = album;
+            this.props.onAddTrack(track);
             this.props.onClose();
          })
          .catch(console.error);
