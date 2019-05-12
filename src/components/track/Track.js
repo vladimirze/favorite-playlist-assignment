@@ -15,9 +15,9 @@ export default function Track(props) {
          <Card.Img variant="top" src="https://via.placeholder.com/150"/>
 
          <Card.Body>
-            <Card.Title>{props.track.track_name}</Card.Title>
+            <Card.Title className="text-truncate">{props.track.track_name}</Card.Title>
 
-            <Card.Text>
+            <Card.Text className="text-truncate">
                {props.track.artist_name}
                <br/>
                {props.track.album_name}
