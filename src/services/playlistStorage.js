@@ -10,9 +10,9 @@ const playlistService = {
       return tracks.find(track => track.track_id === trackId);
    },
 
-   numericSort(field) {
+   numericalSort(field, order='ascending') {
       return function(trackA, trackB) {
-         return trackA[field] - trackB[field];
+         return order === 'ascending' ? trackA[field] - trackB[field] : trackB[field] - trackA[field];
       }
    },
 
@@ -33,7 +33,7 @@ const playlistService = {
    sortBy(playlist, field) {
       let sortFn;
       if (field === 'added_at') {
-         sortFn = this.numericSort(field);
+         sortFn = this.numericalSort(field, 'desc');
       } else {
          sortFn = this.alphabeticalSort(field);
       }
