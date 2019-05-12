@@ -1,7 +1,7 @@
 import React from 'react';
 import AddTrackOverlay from "../../components/addTrackOverlay/AddTrackOverlay";
 import playlistStorage from "../../services/playlistStorage";
-import Track from "../../components/Track";
+import Track from "../../components/track/Track";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
 import Dropdown from "../../components/Dropdown";
@@ -120,6 +120,11 @@ class PlaylistPage extends React.Component {
                key={this.state.isAddTrackOverlayShown}/>
 
           {this.renderTracks()}
+
+            {
+               this.state.tracks.length === 0 &&
+               <div>Your playlist is empty</div>
+            }
          </Container>
       );
    }
