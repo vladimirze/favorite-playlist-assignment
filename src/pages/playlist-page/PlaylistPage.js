@@ -61,7 +61,7 @@ class PlaylistPage extends React.Component {
           {
             this.state.tracks.map(track => {
                return (
-                  <Col xs={3} key={track.track_id}>
+                  <Col sm={6} md={3} key={track.track_id}>
                      <Track
                         track={track}
                         onDelete={this.deleteTrack}
