@@ -27,7 +27,8 @@ export default class AddTrackOverlay extends React.Component {
       this.setState(() => ({[name]: value}));
    }
 
-   findTracks() {
+   findTracks(event) {
+      event.preventDefault();
       trackResource.findTrack({q_track: this.state.trackName, q_artist: this.state.artistName})
          .then(tracks => {
             this.setState(() => {
@@ -75,7 +76,7 @@ export default class AddTrackOverlay extends React.Component {
                         <Form.Control name="trackName" placeholder="Track name" onChange={this.updateInput} />
                      </Form.Group>
 
-                     <Button variant="primary" onClick={this.findTracks} block>Find</Button>
+                     <Button type="submit" variant="primary" onClick={this.findTracks} block>Find</Button>
                   </Form>
 
                   <hr/>
