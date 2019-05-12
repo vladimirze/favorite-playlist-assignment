@@ -1,11 +1,13 @@
 import React from 'react';
-import AddTrackOverlay from "../components/addTrackOverlay/AddTrackOverlay";
-import playlistStorage from "../services/playlistStorage";
-import Track from "../components/Track";
+import AddTrackOverlay from "../../components/addTrackOverlay/AddTrackOverlay";
+import playlistStorage from "../../services/playlistStorage";
+import Track from "../../components/Track";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
-import Dropdown from "../components/Dropdown";
-import userPerferences from "../services/userPreferences";
+import Dropdown from "../../components/Dropdown";
+import userPerferences from "../../services/userPreferences";
+
+import './playlist-page.less';
 
 
 const SORT_CHOICES = {
@@ -98,14 +100,18 @@ class PlaylistPage extends React.Component {
 
    render() {
       return (
-         <Container>
-            <Button variant="primary" onClick={this.showAddTrackOverlay}>Add track</Button>
+         <Container className="playlist-page">
+            <div className="playlist-page__top-bar">
+               <Button variant="success" onClick={this.showAddTrackOverlay}>Add Track</Button>
 
-            Sort by:
-            <Dropdown
-               choices={SORT_CHOICES}
-               onSelect={this.handleSort}
-               initialChoice={this.state.sortOrder}/>
+               <div className="playlist-page__sort-by">
+                  <span className="playlist-page__sort-by-label">Sort by</span>
+                  <Dropdown
+                     choices={SORT_CHOICES}
+                     onSelect={this.handleSort}
+                     initialChoice={this.state.sortOrder}/>
+               </div>
+            </div>
 
             <AddTrackOverlay
                onClose={this.hideAddTrackOverlay}
