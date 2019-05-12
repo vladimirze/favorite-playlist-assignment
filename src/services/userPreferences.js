@@ -1,9 +1,9 @@
 import storageFactory from "./storageFactory";
 
-const userPerferences = {
+const userPreferences = {
    key: 'favorite-playlist-preferences',
 
    ...storageFactory({})
 };
 
-export default userPerferences;
+export default userPreferences;

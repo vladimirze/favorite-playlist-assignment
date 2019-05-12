@@ -1,9 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import PlaylistPage from './pages/playlist-page/PlaylistPage';
+import PlaylistPage from './pages/playlist/PlaylistPage';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import TrackPage from "./pages/TrackPage";
+import TrackPage from "./pages/track/TrackPage";
 
 
 export default class App extends React.Component {

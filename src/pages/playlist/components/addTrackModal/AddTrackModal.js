@@ -1,12 +1,12 @@
 import React from 'react';
 
-import trackResource from '../../api/track';
-import './add-track-overlay.less';
+import trackResource from '../../../../api/track';
+import './add-track-modal.less';
 import {Button, ListGroup, Modal, Form} from "react-bootstrap";
-import albumResource from "../../api/album";
+import albumResource from "../../../../api/album";
 
 
-export default class AddTrackOverlay extends React.Component {
+export default class AddTrackModal extends React.Component {
    constructor(props) {
       super(props);
 
@@ -58,12 +58,12 @@ export default class AddTrackOverlay extends React.Component {
 
    render() {
       return (
-         <Modal show={this.props.isShown} onHide={this.props.onClose} className="add-track-overlay">
+         <Modal show={this.props.isShown} onHide={this.props.onClose} className="add-track-modal">
             <Modal.Header closeButton>
                <Modal.Title>Add Track</Modal.Title>
             </Modal.Header>
 
-            <Modal.Body className="add-track-overlay">
+            <Modal.Body>
                <Form>
                   <Form.Group controlId="artistName">
                      <Form.Label>Artist name</Form.Label>
@@ -80,7 +80,7 @@ export default class AddTrackOverlay extends React.Component {
 
                <hr/>
 
-               <div className="add-track-overlay__list-container">
+               <div className="add-track-modal__list-container">
                   <ListGroup>
                      {
                         this.state.tracks.map((track) => {
