@@ -462,4 +462,4 @@ function e(e){if(e&&e.__esModule)return e;var r={};if(null!=e)for(var t in e)if(
 },{"react":"1n8/","bootstrap/dist/css/bootstrap.min.css":"7y3A","./pages/playlist-page/PlaylistPage":"SGu3","react-router-dom":"/uc1","./pages/TrackPage":"gF7b"}],"Focm":[function(require,module,exports) {
 "use strict";var e=u(require("react")),r=u(require("react-dom")),t=u(require("./App.js"));function u(e){return e&&e.__esModule?e:{default:e}}require("./App.less"),r.default.render(e.default.createElement(t.default,null),document.getElementById("root"));
 },{"react":"1n8/","react-dom":"NKHc","./App.js":"lY9v","./App.less":"7y3A"}]},{},["Focm"], null)
-//# sourceMappingURL=/favorite-playlist-assignment/src.660020db.js.map
+//# sourceMappingURL=https://vladimirze.github.io/favorite-playlist-assignment/src.660020db.js.map
