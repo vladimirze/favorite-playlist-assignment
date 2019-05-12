@@ -6,6 +6,7 @@ import {Button, Col, Container, Row} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
 import Dropdown from "../../components/Dropdown";
 import userPerferences from "../../services/userPreferences";
+import PlaylistIsFullModal from "../../components/PlaylistIsFullModal";
 
 import './playlist-page.less';
 
@@ -17,6 +18,8 @@ const SORT_CHOICES = {
    ARTIST: {label: 'Artist', value: 'artist_name'}
 };
 
+const MAX_TRACKS = 19;
+
 class PlaylistPage extends React.Component {
    constructor(props) {
       super(props);
@@ -24,7 +27,8 @@ class PlaylistPage extends React.Component {
       this.state = {
          isAddTrackOverlayShown: false,
          tracks: playlistStorage.load(),
-         sortOrder: userPerferences.load().sortOrder || SORT_CHOICES.ORIGINAL
+         sortOrder: userPerferences.load().sortOrder || SORT_CHOICES.ORIGINAL,
+         isPlaylistFullModalShown: false
       };
 
       this.showAddTrackOverlay = this.showAddTrackOverlay.bind(this);
@@ -33,10 +37,17 @@ class PlaylistPage extends React.Component {
       this.renderTracks = this.renderTracks.bind(this);
       this.deleteTrack = this.deleteTrack.bind(this);
       this.handleSort = this.handleSort.bind(this);
+      this.deleteTrack = this.deleteTrack.bind(this);
+      this.showFullPlaylistModal = this.showFullPlaylistModal.bind(this);
+      this.hideFullPlaylistModal = this.hideFullPlaylistModal.bind(this);
    }
 
    showAddTrackOverlay() {
-      this.setState(() => ({isAddTrackOverlayShown: true}));
+      if (this.state.tracks.length >= MAX_TRACKS) {
+         this.showFullPlaylistModal();
+      } else {
+         this.setState(() => ({isAddTrackOverlayShown: true}));
+      }
    }
 
    hideAddTrackOverlay() {
@@ -98,6 +109,14 @@ class PlaylistPage extends React.Component {
       });
    }
 
+   showFullPlaylistModal() {
+      this.setState(() => ({isPlaylistFullModalShown: true}));
+   }
+
+   hideFullPlaylistModal() {
+      this.setState(() => ({isPlaylistFullModalShown: false}));
+   }
+
    render() {
       return (
          <Container className="playlist-page">
@@ -118,6 +137,14 @@ class PlaylistPage extends React.Component {
                onAddTrack={this.addTrack}
                isShown={this.state.isAddTrackOverlayShown}
                key={this.state.isAddTrackOverlayShown}/>
+
+            <PlaylistIsFullModal
+               tracks={this.state.tracks}
+               onTrackSelect={this.deleteTrack}
+               onClose={this.hideFullPlaylistModal}
+               isShown={this.state.isPlaylistFullModalShown}
+               key={`playlist-is-full-modal-${this.state.isPlaylistFullModalShown}`}/>
+
 
           {this.renderTracks()}
 
