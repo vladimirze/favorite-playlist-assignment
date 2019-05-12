@@ -1,6 +1,8 @@
 import React from 'react';
 import {Button, Card} from "react-bootstrap";
 
+import './track.less';
+
 
 export default function Track(props) {
    function handleDelete(event) {
@@ -9,7 +11,7 @@ export default function Track(props) {
    }
 
    return (
-      <Card onClick={props.onClick}>
+      <Card className="track" onClick={props.onClick}>
          <Card.Img variant="top" src="https://via.placeholder.com/150"/>
 
          <Card.Body>
